@@ -1,8 +1,0 @@
-export default function ButtonClose() {
-  return (
-    <button className="order-1 flex h-12 w-12 items-center justify-center rounded-full bg-[#F3F3F3]">
-      <span className="sr-only">Close</span>
-      <i className="fi fi-rr-cross-small text-2xl text-[#0E0E0E]" />
-    </button>
-  );
-}
