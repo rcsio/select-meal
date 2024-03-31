@@ -27,7 +27,9 @@ export default function Menu({ data }: Props) {
     duration: 20,
   });
 
-  const handleSelect = useCallback(
+  const handleCategoriesScroll = useCallback(preventExcessiveScroll, []);
+
+  const handleCategoryClick = useCallback(
     (index: number) => {
       if (!emblaMainApi || !emblaThumbsApi) return;
       emblaMainApi.scrollTo(index);
@@ -39,11 +41,9 @@ export default function Menu({ data }: Props) {
     [emblaMainApi, emblaThumbsApi],
   );
 
-  const handleScroll = useCallback(preventExcessiveScroll, []);
-
   useEffect(() => {
-    if (emblaThumbsApi) emblaThumbsApi.on("scroll", handleScroll);
-  }, [emblaThumbsApi, handleScroll]);
+    if (emblaThumbsApi) emblaThumbsApi.on("scroll", handleCategoriesScroll);
+  }, [emblaThumbsApi, handleCategoriesScroll]);
 
   useEffect(() => {
     if (!emblaMainApi || !emblaThumbsApi) return;
@@ -68,7 +68,7 @@ export default function Menu({ data }: Props) {
               key={i}
               name={category}
               active={i === selectedIndex}
-              onClick={() => handleSelect(i)}
+              onClick={() => handleCategoryClick(i)}
             />
           ))}
         </ul>
