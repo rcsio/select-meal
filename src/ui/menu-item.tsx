@@ -2,7 +2,7 @@ import useApp from "@/hooks/useApp";
 import { Product } from "@/types";
 import QuickView from "@/ui/quick-view";
 import Rating from "@/ui/rating";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   data: Product;
