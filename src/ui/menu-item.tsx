@@ -48,8 +48,8 @@ export default function MenuItem({ data }: Props) {
               />
               <input
                 type="checkbox"
-                name="hummus_plate"
-                id="hummus_plate"
+                name="meal"
+                id={data.id}
                 className="peer sr-only"
                 checked={selections.some(({ id }) => id === data.id)}
                 onChange={(e) =>
