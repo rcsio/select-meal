@@ -39,7 +39,7 @@ export default function QuickView({ data, onClose }: Props) {
               <img
                 key={i}
                 src="https://source.unsplash.com/random/375×233/?food"
-                alt=""
+                alt={data.name}
                 className="h-[233px] w-[375px] shrink-0 object-cover"
               />
             ))}
@@ -99,11 +99,11 @@ export default function QuickView({ data, onClose }: Props) {
         <dl>
           <div className="flex items-center justify-between">
             <dt className="sr-only">Name</dt>
-            <dd className="font-bold leading-[19px]">Hummus</dd>
+            <dd className="font-bold leading-[19px]">{data.name}</dd>
 
             <dt className="sr-only">Rating</dt>
             <dd className="text-[#79E003]">
-              <Rating value={4.9} />
+              <Rating value={data.rating} />
             </dd>
           </div>
 
@@ -114,10 +114,7 @@ export default function QuickView({ data, onClose }: Props) {
 
           <dt className="sr-only">Description</dt>
           <dd className="mt-6 line-clamp-3 text-xs leading-[18px] text-[#2F333399]">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
-            consequatur cumque dolorem ducimus error laudantium magni maxime
-            nam, natus nostrum odit optio, perspiciatis praesentium provident
-            repudiandae suscipit vel vero, voluptas?
+            {data.description}
           </dd>
         </dl>
 

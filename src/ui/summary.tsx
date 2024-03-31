@@ -77,7 +77,7 @@ export default function Summary() {
                 <div className="flex items-center gap-x-3">
                   <img
                     src="https://source.unsplash.com/random/?food"
-                    alt=""
+                    alt={data.name}
                     className="aspect-square w-[72px] rounded-lg object-cover"
                   />
 
