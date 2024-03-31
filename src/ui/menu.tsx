@@ -1,9 +1,9 @@
 "use client";
 
+import { preventExcessiveScroll } from "@/lib/helpers";
 import { Product } from "@/types";
 import Category from "@/ui/category";
 import Group from "@/ui/group";
-import { EmblaCarouselType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -39,38 +39,11 @@ export default function Menu({ data }: Props) {
     [emblaMainApi, emblaThumbsApi],
   );
 
-  const preventExcessiveScroll = useCallback((emblaApi: EmblaCarouselType) => {
-    const {
-      limit,
-      target,
-      location,
-      offsetLocation,
-      scrollTo,
-      translate,
-      scrollBody,
-    } = emblaApi.internalEngine();
-
-    let edge: number | null = null;
-
-    if (limit.reachedMax(location.get())) edge = limit.max;
-    if (limit.reachedMin(location.get())) edge = limit.min;
-
-    if (edge !== null) {
-      offsetLocation.set(edge);
-      location.set(edge);
-      target.set(edge);
-      translate.to(edge);
-      translate.toggleActive(false);
-      scrollBody.useDuration(0).useFriction(0);
-      scrollTo.distance(0, false);
-    } else {
-      translate.toggleActive(true);
-    }
-  }, []);
+  const handleScroll = useCallback(preventExcessiveScroll, []);
 
   useEffect(() => {
-    if (emblaThumbsApi) emblaThumbsApi.on("scroll", preventExcessiveScroll);
-  }, [emblaThumbsApi, preventExcessiveScroll]);
+    if (emblaThumbsApi) emblaThumbsApi.on("scroll", handleScroll);
+  }, [emblaThumbsApi, handleScroll]);
 
   useEffect(() => {
     if (!emblaMainApi || !emblaThumbsApi) return;
