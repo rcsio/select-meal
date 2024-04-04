@@ -15,6 +15,12 @@ Make sure you have the following installed:
 
 Note: These versions are pinned in the `volta` key in `package.json`.
 
+### Install Dependencies
+
+```shell
+npm install
+```
+
 ### Environment Variable
 
 Set the following environment variable in `.env` file:
@@ -23,25 +29,27 @@ Set the following environment variable in `.env` file:
 NEXT_PUBLIC_BACKEND_URL=http://localhost:4000
 ````
 
-### Install Dependencies
+### Set the Port
+
+#### Ubuntu/Debian
 
 ```shell
-npm install
+export PORT=4000
+```
+
+#### Windows
+
+```shell
+set PORT=4000
 ```
 
 ### Start the Development Server
 
-You can also specify a different port:
-
 ```shell
-next dev -p 4000
+npm run dev
 ```
 
-Or use the PORT environment variable:
-
-```shell
-PORT=4000 next dev
-```
+You can also specify a different port.
 
 Don't forget to update `NEXT_PUBLIC_BACKEND_URL` accordingly.
 
